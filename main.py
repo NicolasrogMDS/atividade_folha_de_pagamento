@@ -20,11 +20,13 @@ def verificar_matricula_senha():
         matricula_inserida, senha_inserida = fazer_login()
         if matricula_inserida == matricula_registrada and senha_inserida == senha_registrada:
             print("\nSeja bem-vindo!")
-            sleep(1)
+            sleep(2)
+            limpar_tela()
             break
         else:
-            print("\nMatrícula e senha incorretas. Por favor, tente novamente.")
-            sleep(1)
+            print("\nMatrícula ou senha incorretas. Por favor, tente novamente.")
+            sleep(2)
+            limpar_tela()
     return matricula_inserida, senha_inserida
 
 def calcular_desconto_inss(a):
@@ -84,6 +86,7 @@ def calcular_desconto_plano_de_saude(a):
         desconto_plano_de_saude = 0
     return desconto_plano_de_saude 
 
+limpar_tela()
 matricula_registrada, senha_registrada = registrar_matricula_senha()
 matricula_inserida, senha_inserida = verificar_matricula_senha()
 salario_base = float(input("Insira o seu salário base: "))
