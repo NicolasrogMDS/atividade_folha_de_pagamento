@@ -29,45 +29,45 @@ def verificar_matricula_senha():
             limpar_tela()
     return matricula_inserida, senha_inserida
 
-def calcular_desconto_inss(a):
-    if a <= 1100.00:  # Desconta 7,5%
-        desconto_inss = a * 0.075
+def calcular_desconto_inss(salario_bruto):
+    if salario_bruto <= 1518.00:  # Desconta 7,5%
+        desconto_inss = salario_bruto * 0.075
         return desconto_inss
-    elif a <= 2203.48:  # Desconta 9%
-        desconto_inss = a * 0.09
+    elif salario_bruto <= 2793.88:  # Desconta 9%
+        desconto_inss = salario_bruto * 0.09
         return desconto_inss
-    elif a <= 3305.22:  # Desconta 12%
-        desconto_inss = a * 0.12
+    elif salario_bruto <= 4190.83:  # Desconta 12%
+        desconto_inss = salario_bruto * 0.12
         return desconto_inss
-    elif a <=  6433.57:  # Desconta 14% ou no máximo R$854.36
-        desconto_inss = a * 0.14
+    elif salario_bruto <=  8157.41:  # Desconta 14% ou no máximo R$854.36
+        desconto_inss = salario_bruto * 0.14
         if desconto_inss > 854.36:
             desconto_inss = 854.36
         return desconto_inss
     else:  # Desconta no máximo R$854.36
-        desconto_inss = a * 0.14
+        desconto_inss = salario_bruto * 0.14
         if desconto_inss > 854.36:
             desconto_inss = 854.36
         return desconto_inss
 
-def calcular_desconto_irrf(a, b):
-    if a <= 2259.20:  # Isento
+def calcular_desconto_irrf(salario_bruto, dependentes):
+    if salario_bruto <= 2259.20:  # Isento
         desconto_irrf = 0
-    elif a <= 2826.65:  # Desconta 7,5%
-        desconto_irrf = a * 0.075
-    elif a <= 3751.05:  # Desconta 15%
-        desconto_irrf = a * 0.15
-    elif a <= 4664.68:  # Desconta 22,5%
-        desconto_irrf = a * 0.225
+    elif salario_bruto <= 2826.65:  # Desconta 7,5%
+        desconto_irrf = salario_bruto * 0.075
+    elif salario_bruto <= 3751.05:  # Desconta 15%
+        desconto_irrf = salario_bruto * 0.15
+    elif salario_bruto <= 4664.68:  # Desconta 22,5%
+        desconto_irrf = salario_bruto * 0.225
     else:  # Desconta 27,5%
-        desconto_irrf = a * 0.275
+        desconto_irrf = salario_bruto * 0.275
     
-    if b != 0:
-        deducao_por_dependente = 189.59 * b
+    if dependentes != 0:
+        deducao_por_dependente = 189.59 * dependentes
     else:
         deducao_por_dependente = 0
     
-    desconto_irrf_final = desconto_irrf + deducao_por_dependente
+    desconto_irrf_final = desconto_irrf - deducao_por_dependente
     return desconto_irrf_final
 
 def calcular_desconto_vale_transporte(a):
@@ -78,10 +78,10 @@ def calcular_desconto_vale_refeicao(a):
     desconto_vale_refeicao = a * 0.20
     return desconto_vale_refeicao
 
-def calcular_desconto_plano_de_saude(a):
+def calcular_desconto_plano_de_saude(dependentes):
     valor_por_dependente = 150
-    if a != 0:
-        desconto_plano_de_saude = valor_por_dependente * a
+    if dependentes != 0:
+        desconto_plano_de_saude = valor_por_dependente * dependentes
     else:
         desconto_plano_de_saude = 0
     return desconto_plano_de_saude 
