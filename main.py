@@ -32,23 +32,15 @@ def verificar_matricula_senha():
 def calcular_desconto_inss(salario_bruto):
     if salario_bruto <= 1518.00:  # Desconta 7,5%
         desconto_inss = salario_bruto * 0.075
-        return desconto_inss
     elif salario_bruto <= 2793.88:  # Desconta 9%
         desconto_inss = salario_bruto * 0.09
-        return desconto_inss
     elif salario_bruto <= 4190.83:  # Desconta 12%
         desconto_inss = salario_bruto * 0.12
-        return desconto_inss
-    elif salario_bruto <=  8157.41:  # Desconta 14% ou no máximo R$854.36
+    elif salario_bruto <=  8157.41:  # Desconta 14%
         desconto_inss = salario_bruto * 0.14
-        if desconto_inss > 854.36:
-            desconto_inss = 854.36
-        return desconto_inss
     else:  # Desconta no máximo R$854.36
-        desconto_inss = salario_bruto * 0.14
-        if desconto_inss > 854.36:
-            desconto_inss = 854.36
-        return desconto_inss
+        desconto_inss = 854.36
+    return desconto_inss
 
 def calcular_desconto_irrf(salario_bruto, dependentes):
     if salario_bruto <= 2259.20:  # Isento
@@ -139,3 +131,8 @@ desconto_plano_de_saude = calcular_desconto_plano_de_saude(quantidade_de_depende
 salario_liquido = salario_base - (desconto_inss + desconto_irrf + desconto_vale_transporte + desconto_vale_refeicao + desconto_plano_de_saude)
 
 print(f"\nO seu salário líquido será: R${salario_liquido:.2f}")
+print(f"\nDesconto inss = R${desconto_inss:.2f}")
+print(f"Desconto imposto de renda = R${desconto_irrf}")
+print(f"Desconto vale de transporte = R${desconto_vale_transporte}")
+print(f"Desconto vale refeição = R${desconto_vale_refeicao}")
+print(f"Desconto plano de saúde = R${desconto_plano_de_saude}")
